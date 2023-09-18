@@ -1,0 +1,6 @@
+go 1.21.0
+// 可以使用 go.work 而不是添加 replace 指令来跨多个模块工作。
+use (
+	./example/hello
+	./hello
+)

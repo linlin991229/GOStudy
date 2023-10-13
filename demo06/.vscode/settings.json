@@ -1,0 +1,9 @@
+{
+    "cSpell.words": [
+        "bursty",
+        "strs"
+    ],
+    "code-runner.executorMap": {
+        "go": "go run $workspaceRoot",
+    }
+}

@@ -43,13 +43,3 @@ func TestRegexp() {
 	out := r.ReplaceAllFunc(in, bytes.ToUpper)
 	fmt.Println(string(out))
 }
-
-func TestArray() {
-	arr := []int{1, 2, 3, 4}
-	fmt.Println(arr)
-	strs := []string{"aaa", "bbb"}
-	fmt.Println(strs)
-	// 字符串转换为字节切片
-	bytes := []byte("a b")
-	fmt.Println(bytes)
-}

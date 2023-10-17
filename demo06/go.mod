@@ -1,7 +1,7 @@
-module lin.com/go_routing
+module lin.com/study
 
 go 1.21.0
 
 require (
-	
+
 )

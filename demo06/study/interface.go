@@ -36,3 +36,43 @@ func TestInterface() {
 		fmt.Println("describe:", desc.describe())
 	}
 }
+
+type Show interface {
+	// 值接收者方法
+	show()
+}
+type ShowPoint interface {
+	showPoint()
+}
+
+func TestInterface2() {
+	user := User{
+		Name: "John Doe",
+		Age:  25,
+	}
+	show(user)
+	// 指针接收者实现的接口要使用引用
+	show2(&user)
+
+	// Duration.pretty() 错误
+	d := Duration(10)
+	fmt.Printf("d.pretty(): %v\n", d.pretty())
+	fmt.Printf("Duration(20).pretty2(): %v\n", Duration(20).pretty2())
+	fmt.Println("d.pretty2():", (&d).pretty2())
+}
+
+func show(s Show) {
+	s.show()
+}
+func show2(s ShowPoint) {
+	s.showPoint()
+}
+
+type Duration int
+
+func (d *Duration) pretty() string {
+	return fmt.Sprintf("Duration: %d", *d)
+}
+func (d Duration) pretty2() string {
+	return fmt.Sprintf("Duration: %d", d)
+}

@@ -1,0 +1,8 @@
+{
+    "cSpell.words": [
+        "gonic"
+    ],
+    "code-runner.executorMap": {
+        "go": "go run $workspaceRoot",
+    }
+}

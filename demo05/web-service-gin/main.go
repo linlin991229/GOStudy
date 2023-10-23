@@ -1,9 +1,12 @@
 package main
 
 import (
+	"fmt"
+	"log"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"github.com/gorilla/websocket"
 )
 
 // album represents(代表) data about a record album.
@@ -30,14 +33,16 @@ func postAlbum(c *gin.Context) {
 	var newAlbum album
 
 	if err := c.BindJSON(&newAlbum); err != nil {
+		log.Println(err)
 		return
 	}
 
 	albums = append(albums, newAlbum)
+	// c.JSON(http.StatusCreated, newAlbum) // 更加紧凑
 	c.IndentedJSON(http.StatusCreated, newAlbum)
 }
 func getAlbumByID(c *gin.Context) {
-	id := c.Params("id")
+	id := c.Params.ByName("id")
 	// Loop over the list of albums, looking for
 	// an album whose ID value matches the parameter.
 	for _, a := range albums {
@@ -48,10 +53,82 @@ func getAlbumByID(c *gin.Context) {
 	}
 	c.IndentedJSON(http.StatusNotFound, gin.H{"message": "album not found"})
 }
+func handleQueryArg(c *gin.Context) {
+	username := c.Query("username")
+	c.JSON(http.StatusOK, gin.H{
+		"username": username,
+	})
+}
+func handlePostArg(c *gin.Context) {
+	username := c.PostForm("username")
+	password := c.DefaultPostForm("password", "123456") // 默认值"123456"
+	c.IndentedJSON(http.StatusOK, gin.H{
+		"username": username,
+		"password": password,
+	})
+}
+func handleGetFormArg(c *gin.Context) {
+	username := c.Query("username")
+	password := c.DefaultQuery("password", "123456") // 默认值"123456"
+	c.IndentedJSON(http.StatusOK, gin.H{
+		"username": username,
+		"password": password,
+	})
+}
+func handleFormArgToStruct(c *gin.Context) {
+	var album album
+
+	if err := c.BindJSON(&album); err != nil {
+		log.Println(err)
+		return
+	}
+	c.IndentedJSON(http.StatusOK, album)
+}
 func main() {
 	router := gin.Default()
 	router.GET("/albums", getAlbums)
 	router.POST("/albums", postAlbum)
 	router.GET("/albums/:id", getAlbumByID)
+	router.GET("/queryArg", handleQueryArg)
+
+	router.POST("/postFormArg", handlePostArg)
+	router.GET("/GetFormArg", handleGetFormArg)
+	router.POST("/formArgToStruct", handleFormArgToStruct)
+
+	router.GET("/websocket", func(ctx *gin.Context) {
+		handleWebsocket(ctx.Writer, ctx.Request)
+	})
 	router.Run("localhost:8080")
+
+}
+
+var upgrader = websocket.Upgrader{
+	ReadBufferSize:  1024,
+	WriteBufferSize: 1024,
+}
+
+func handleWebsocket(w http.ResponseWriter, r *http.Request) {
+	ws, err := upgrader.Upgrade(w, r, nil)
+	if err != nil {
+		log.Println(err)
+		return
+	}
+	// defer ws.Close()
+
+	for {
+		msgType, msg, err := ws.ReadMessage()
+		if err != nil {
+			log.Println(err)
+			return
+		}
+
+		fmt.Println("远程地址:", ws.RemoteAddr(), ",received: ", string(msg))
+
+		if err = ws.WriteMessage(msgType, msg); err != nil {
+			log.Println(err)
+			return
+
+		}
+	}
+
 }

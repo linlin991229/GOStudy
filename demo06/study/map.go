@@ -33,4 +33,8 @@ func TestMap() {
 	}
 	delete(colors, "Red")
 	fmt.Println("colors:", colors)
+
+	for k := range colors {
+		fmt.Println("k:", k)
+	}
 }

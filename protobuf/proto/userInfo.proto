@@ -1,0 +1,16 @@
+syntax = "proto3"; //指定版本信息
+
+option go_package="./userService;userService";
+
+message userInfo{
+    string username=1;
+    int32 age=2;
+    PhoneType type=3; //默认值是第一个
+    repeated string hobby=4; // repeated定义切片
+}
+
+enum PhoneType{
+    MOBILE=0;
+    HOME=1;
+    WORK=3;
+}

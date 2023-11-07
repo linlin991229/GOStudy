@@ -11,6 +11,8 @@ func InitMiddleware(c *gin.Context) {
 	start := time.Now().UnixNano()
 	fmt.Println("into")
 	fmt.Println("url:", c.Request.URL)
+	// 获取请求头信息
+	fmt.Println(c.GetHeader("Authorization"))
 
 	c.Set("middlewareData", "middlewareData")
 	// 下一个处理器

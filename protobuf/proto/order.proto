@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option go_package="./orderService;orderService";
+
+message Order{
+    int64 id=1;
+    double price=2;
+    string name=3;
+    string tel=4;
+    string address=5;
+
+    message OrderItem{
+        int64 goodsId=1;
+        string title=2;
+        double price=3;
+        int32 number=4;
+    }
+    OrderItem orderItem=7;
+}

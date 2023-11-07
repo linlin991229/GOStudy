@@ -2,8 +2,8 @@ package models
 
 type Student struct {
 	Id       int    `json:"id"`
-	Username string `json:"username"`
-	Age      int    `json:"age"`
+	Username string `json:"username"  validate:"required"`
+	Age      int    `json:"age" validate:"required,gte=0,lte=100"`
 }
 
 func SaveStudent(student Student) bool {

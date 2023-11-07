@@ -2,8 +2,14 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
 	"sync"
 )
+
+// 匿名字段
+type Student struct {
+	string
+}
 
 func main() {
 	wg := sync.WaitGroup{}
@@ -17,4 +23,15 @@ func main() {
 	}
 	wg.Wait()
 	fmt.Println("over")
+	temp := make(map[int]string)
+	temp[1] = "value"
+	fmt.Println(temp)
+
+	fmt.Println(rand.Intn(10))
+
+	x, y := 1, 2
+	x += y
+	y = x - y
+	x -= y
+	fmt.Println(x, y)
 }

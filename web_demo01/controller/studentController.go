@@ -6,6 +6,7 @@ import (
 	"strconv"
 
 	"github.com/gin-gonic/gin"
+	"github.com/go-playground/validator/v10"
 	"lin.com/web_demo01/models"
 )
 
@@ -30,9 +31,31 @@ func (stu StudentController) SaveStudent(c *gin.Context) {
 	if err != nil {
 		log.Println(err)
 	}
+	// 校验
+	validate := validator.New()
+	if err := validate.Struct(student); err != nil {
+		if _, ok := err.(*validator.InvalidValidationError); ok {
+			log.Println(err)
+			c.JSON(http.StatusBadRequest, gin.H{
+				"error": err.Error(),
+			})
+			return
+		}
+		var errs string
+		for _, err := range err.(validator.ValidationErrors) {
+			log.Println(err)
+			errs += err.Error() + " "
+		}
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error": err.Error(),
+		})
+		return
+
+	}
 	if models.SaveStudent(student) {
 		c.JSON(200, gin.H{
 			"status": "save success",
+			"data":   student,
 		})
 		return
 	}

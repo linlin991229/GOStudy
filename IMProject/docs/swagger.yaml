@@ -1,0 +1,19 @@
+info:
+  contact: {}
+paths:
+  /user/test:
+    get:
+      consumes:
+      - application/json
+      description: swagger测试描述
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: struct
+      summary: swagger测试
+      tags:
+      - swagger测试标签
+swagger: "2.0"

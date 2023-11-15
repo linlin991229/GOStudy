@@ -13,7 +13,7 @@ var DB *gorm.DB
 
 func init() {
 	// 读取配置文件
-	cfg, errIni := ini.Load("./conf/app.ini")
+	cfg, errIni := ini.Load("../conf/app.ini")
 	if errIni != nil {
 		log.Panicln(errIni)
 	}

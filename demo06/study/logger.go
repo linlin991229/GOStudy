@@ -14,7 +14,10 @@ func TestLogger() {
 	log.SetFlags(log.LstdFlags | log.Lshortfile)
 	log.Println("有文件/行号的日志")
 
-	myLog := log.New(os.Stdout, "my:", log.LstdFlags)
+	log2 := log.New(os.Stdout, "INFO:", log.Ldate|log.Ltime|log.Lshortfile)
+	log2.Println("日志2")
+
+	myLog := log.New(os.Stdout, "my:", log.LstdFlags|log.Lshortfile)
 	myLog.Println("from myLog")
 
 	myLog.SetPrefix("myPrefix:")

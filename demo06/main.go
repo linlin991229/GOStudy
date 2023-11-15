@@ -2,8 +2,6 @@ package main
 
 import (
 	"fmt"
-
-	"lin.com/study/study"
 )
 
 // main is the entry point of the program.
@@ -14,5 +12,7 @@ func main() {
 
 	// study.TestHttpServer()
 	// study.TestRateLimit()
-	study.TestConcurrentPrime()
+	// study.TestConcurrentPrime()
+
+	fmt.Println(3 | 2)
 }

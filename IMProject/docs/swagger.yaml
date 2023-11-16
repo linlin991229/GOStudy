@@ -1,6 +1,54 @@
+basePath: /lin/im/v1
+definitions:
+  common.LinResult:
+    properties:
+      code:
+        type: integer
+      data: {}
+      msg:
+        type: string
+    type: object
+  models.UserBase:
+    type: object
+externalDocs:
+  description: OpenAPI
+  url: https://swagger.io/resources/open-api/
+host: localhost:8080
 info:
-  contact: {}
+  contact:
+    email: 1589861957@qq.com
+    name: 霖霖
+    url: http://www.swagger.io/support
+  description: 一个go的即时通信项目.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: API服务条款
+  title: IM即时通信
+  version: "1.0"
 paths:
+  /user/createUser:
+    post:
+      consumes:
+      - application/json
+      description: 创建用户
+      parameters:
+      - description: 创建用户
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/models.UserBase'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/common.LinResult'
+      summary: 创建用户
+      tags:
+      - 首页
   /user/test:
     get:
       consumes:
@@ -12,8 +60,11 @@ paths:
         "200":
           description: OK
           schema:
-            type: struct
+            $ref: '#/definitions/common.LinResult'
       summary: swagger测试
       tags:
       - swagger测试标签
+securityDefinitions:
+  BasicAuth:
+    type: basic
 swagger: "2.0"

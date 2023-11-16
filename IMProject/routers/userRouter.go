@@ -9,5 +9,6 @@ func UserRouter(router *gin.Engine) {
 	user := router.Group("/user")
 	{
 		user.GET("/test", controller.UserController{}.HandlerUserTest)
+		user.POST("/createUser", controller.UserController{}.CreateUser)
 	}
 }

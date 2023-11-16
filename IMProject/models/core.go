@@ -14,7 +14,7 @@ import (
 
 var DB *gorm.DB
 
-func init() {
+func ggg() {
 	// 读取配置文件
 	cfg, errIni := ini.Load("../conf/app.ini")
 
@@ -38,7 +38,7 @@ func init() {
 		logger.Config{
 			SlowThreshold: time.Second, // 慢 SQL 阈值
 			LogLevel:      logger.Info, // 日志级别
-			Colorful:      true,        // 禁用彩色打印
+			Colorful:      true,        // 彩色打印
 		},
 	)
 

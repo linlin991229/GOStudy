@@ -3,6 +3,8 @@ package study
 import (
 	"fmt"
 	"time"
+
+	"lin.com/study/utils"
 )
 
 type User struct {
@@ -62,7 +64,7 @@ type Model struct {
 
 	Reference *User
 
-	Date MyTime
+	Date utils.LocalDateTimeFormat
 }
 type MyTime time.Time
 

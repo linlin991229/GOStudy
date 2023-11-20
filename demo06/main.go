@@ -16,5 +16,12 @@ func main() {
 	// study.TestRateLimit()
 	// study.TestConcurrentPrime()
 
-	study.TestLogger()
+	// study.TestLogger()
+	testStruct := study.TestStruct1{
+		Name: "lin",
+		TestStruct2: study.TestStruct2{
+			Hello: "hello",
+		},
+	}
+	fmt.Println("testStruct:", testStruct.Hello)
 }

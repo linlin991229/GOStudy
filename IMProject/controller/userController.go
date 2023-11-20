@@ -43,7 +43,7 @@ func (u UserController) HandlerUserTest(c *gin.Context) {
 // @Router /user/createUser [post]
 func (u UserController) CreateUser(c *gin.Context) {
 	user := models.UserBase{}
-
+	models.DB.Create(&user)
 	c.BindJSON(&user)
 	c.JSON(http.StatusCreated, common.LinResult{
 		Code: 200,

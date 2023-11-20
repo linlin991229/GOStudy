@@ -1,5 +1,11 @@
 {
+  "code-runner.executorMap": {
+    "go": "go run $workspaceRoot\\main.go",
+  },
+  "code-runner.clearPreviousOutput": true,
+  "code-runner.saveAllFilesBeforeRun": true,
   "cSpell.words": [
+    "datetime",
     "godoc",
     "gonic",
     "gorm",

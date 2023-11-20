@@ -9,6 +9,36 @@ definitions:
         type: string
     type: object
   models.UserBase:
+    properties:
+      client_id:
+        type: string
+      client_port:
+        type: string
+      device_info:
+        type: string
+      email:
+        example: lin@qq.com
+        type: string
+      heartbeat_time:
+        type: integer
+      identity:
+        type: string
+      is_logout:
+        type: boolean
+      login_time:
+        type: integer
+      logout_time:
+        type: integer
+      password:
+        example: "123456"
+        type: string
+      phone:
+        example: "18989190946"
+        type: string
+      username:
+        description: gorm.Model
+        example: lin
+        type: string
     type: object
 externalDocs:
   description: OpenAPI

@@ -96,7 +96,50 @@ const docTemplate = `{
             }
         },
         "models.UserBase": {
-            "type": "object"
+            "type": "object",
+            "properties": {
+                "client_id": {
+                    "type": "string"
+                },
+                "client_port": {
+                    "type": "string"
+                },
+                "device_info": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string",
+                    "example": "lin@qq.com"
+                },
+                "heartbeat_time": {
+                    "type": "integer"
+                },
+                "identity": {
+                    "type": "string"
+                },
+                "is_logout": {
+                    "type": "boolean"
+                },
+                "login_time": {
+                    "type": "integer"
+                },
+                "logout_time": {
+                    "type": "integer"
+                },
+                "password": {
+                    "type": "string",
+                    "example": "123456"
+                },
+                "phone": {
+                    "type": "string",
+                    "example": "18989190946"
+                },
+                "username": {
+                    "description": "gorm.Model",
+                    "type": "string",
+                    "example": "lin"
+                }
+            }
         }
     },
     "securityDefinitions": {

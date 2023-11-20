@@ -45,3 +45,11 @@ func showUser(user User) {
 	user.Name = "Bob"
 	fmt.Println("showUserFunc Name:", user.Name, "Age:", user.Age)
 }
+
+type TestStruct2 struct {
+	Hello string
+}
+type TestStruct1 struct {
+	Name string
+	TestStruct2
+}

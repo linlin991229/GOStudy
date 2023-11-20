@@ -1,13 +1,15 @@
 package models
 
-import "gorm.io/gorm"
+import (
+	"lin.com/im/utils"
+)
 
 type UserBase struct {
-	gorm.Model
-	Username      string `json:"username"`
-	Password      string `json:"password"`
-	Email         string `json:"email"`
-	Phone         string `json:"phone"`
+	utils.GORM_MODEL
+	Username      string `json:"username" example:"lin"`
+	Password      string `json:"password" example:"123456"`
+	Email         string `json:"email" example:"lin@qq.com"`
+	Phone         string `json:"phone" example:"18989190946"`
 	Identity      string `json:"identity"`
 	ClientId      string `json:"client_id"`
 	ClientPort    string `json:"client_port"`

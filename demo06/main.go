@@ -2,7 +2,9 @@ package main
 
 import (
 	"fmt"
+	"time"
 
+	"lin.com/study/dao"
 	"lin.com/study/study"
 )
 
@@ -10,13 +12,9 @@ import (
 //
 // It prints "霖霖" to the console.
 func main() {
-	fmt.Println("霖霖")
-
 	// study.TestHttpServer()
 	// study.TestRateLimit()
 	// study.TestConcurrentPrime()
-
-	// study.TestLogger()
 	testStruct := study.TestStruct1{
 		Name: "lin",
 		TestStruct2: study.TestStruct2{
@@ -24,4 +22,22 @@ func main() {
 		},
 	}
 	fmt.Println("testStruct:", testStruct.Hello)
+	study.TestLogger()
+
+	user := study.Model{
+		Name: "John Doe",
+		Age:  25,
+		Reference: &study.User{
+			Name: "Bob",
+			Age:  30,
+		},
+		Date: study.MyTime(time.Now()),
+	}
+
+	fmt.Println("user:", user)
+	fmt.Printf("user:%v \n", user)
+	fmt.Printf("user:%+v \n", user)
+	fmt.Printf("user:%#v \n", user)
+
+	dao.DBGorm()
 }

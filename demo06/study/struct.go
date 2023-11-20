@@ -1,6 +1,9 @@
 package study
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+)
 
 type User struct {
 	Name string
@@ -52,4 +55,20 @@ type TestStruct2 struct {
 type TestStruct1 struct {
 	Name string
 	TestStruct2
+}
+type Model struct {
+	Name string
+	Age  int
+
+	Reference *User
+
+	Date MyTime
+}
+type MyTime time.Time
+
+func (t MyTime) String() string {
+	// return time.Time(t).String()
+	// return time.Time(t).Format("2006-01-02 15:04:05")
+	return fmt.Sprintf("%s", time.Time(t).Format("2006-01-02 15:04:05"))
+
 }

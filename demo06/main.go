@@ -1,6 +1,8 @@
 package main
 
-import "lin.com/study/dao"
+import (
+	"lin.com/study/dao"
+)
 
 // main is the entry point of the program.
 //
@@ -34,4 +36,5 @@ func main() {
 	// fmt.Printf("user:%#v \n", user)
 
 	dao.DBGorm()
+
 }

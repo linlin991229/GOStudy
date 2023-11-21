@@ -53,7 +53,3 @@ func (t *LocalDateTimeFormat) Scan(v interface{}) error {
 	}
 	return nil
 }
-
-func (t LocalDateTimeFormat) local() time.Time {
-	return time.Time(t)
-}

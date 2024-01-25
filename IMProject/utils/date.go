@@ -13,8 +13,8 @@ import (
 type GORM_MODEL struct {
 	ID        uint                `gorm:"primaryKey" json:"id"`
 	CreatedAt LocalDateTimeFormat `gorm:"column:created_at;autoCreateTime;type:datetime" json:"created_at"`
-	UpdatedAt LocalDateTimeFormat `gorm:"column:updated_at;autoUpdateTime;type:datetime" json:"updated_at"`
-	DeletedAt gorm.DeletedAt      `gorm:"index"`
+	UpdatedAt time.Time           `gorm:"column:updated_at" json:"updated_at"`
+	DeletedAt gorm.DeletedAt      `gorm:"index" json:"deleted_at"`
 }
 
 type LocalDateTimeFormat time.Time

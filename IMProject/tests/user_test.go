@@ -10,11 +10,11 @@ import (
 
 // 测试
 func TestUser(t *testing.T) {
-	// if err := models.DB.AutoMigrate(&models.UserBase{}); err != nil {
-	// 	fmt.Println(err)
-	// } else {
-	// 	fmt.Println("success")
-	// }
+	if err := models.DB.AutoMigrate(&models.UserBase{}); err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println("success")
+	}
 	models.DB.Create(&models.UserBase{
 		Username: "llll",
 		Password: "test",

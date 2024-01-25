@@ -1,6 +1,7 @@
 {
   "code-runner.executorMap": {
-    "go": "go run $workspaceRoot\\main.go",
+    // "go": "go run $workspaceRoot\\main.go", // in windows
+    "go": "go run $workspaceRoot/main.go", // in linux
   },
   "code-runner.clearPreviousOutput": true,
   "code-runner.saveAllFilesBeforeRun": true,

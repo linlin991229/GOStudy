@@ -8,18 +8,32 @@ definitions:
       msg:
         type: string
     type: object
+  gorm.DeletedAt:
+    properties:
+      time:
+        type: string
+      valid:
+        description: Valid is true if Time is not NULL
+        type: boolean
+    type: object
   models.UserBase:
     properties:
       client_id:
         type: string
       client_port:
         type: string
+      created_at:
+        type: string
+      deleted_at:
+        $ref: '#/definitions/gorm.DeletedAt'
       device_info:
         type: string
       email:
         example: lin@qq.com
         type: string
       heartbeat_time:
+        type: integer
+      id:
         type: integer
       identity:
         type: string
@@ -35,8 +49,9 @@ definitions:
       phone:
         example: "18989190946"
         type: string
+      updated_at:
+        type: string
       username:
-        description: gorm.Model
         example: lin
         type: string
     type: object
@@ -78,7 +93,60 @@ paths:
             $ref: '#/definitions/common.LinResult'
       summary: 创建用户
       tags:
-      - 首页
+      - 用户管理
+  /user/deleteUser/{id}:
+    delete:
+      description: 删除用户
+      parameters:
+      - description: 删除用户
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/common.LinResult'
+      summary: 删除用户
+      tags:
+      - 用户管理
+  /user/getUser/{id}:
+    get:
+      consumes:
+      - application/json
+      description: 查询用户
+      parameters:
+      - description: 查询用户
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "302":
+          description: Found
+          schema:
+            $ref: '#/definitions/common.LinResult'
+      summary: 查询用户
+      tags:
+      - 用户管理
+  /user/getUsers:
+    get:
+      description: 查询所有用户
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/common.LinResult'
+      summary: 查询所有用户
+      tags:
+      - 用户管理
   /user/test:
     get:
       consumes:
@@ -94,6 +162,28 @@ paths:
       summary: swagger测试
       tags:
       - swagger测试标签
+  /user/updateUser:
+    put:
+      consumes:
+      - application/json
+      description: 更新用户
+      parameters:
+      - description: 更新用户
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/models.UserBase'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/common.LinResult'
+      summary: 更新用户
+      tags:
+      - 用户管理
 securityDefinitions:
   BasicAuth:
     type: basic

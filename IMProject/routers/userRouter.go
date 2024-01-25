@@ -10,5 +10,9 @@ func UserRouter(router *gin.Engine) {
 	{
 		user.GET("/test", controller.UserController{}.HandlerUserTest)
 		user.POST("/createUser", controller.UserController{}.CreateUser)
+		user.PUT("/updateUser", controller.UserController{}.UpdateUser)
+		user.GET("/getUser/:id", controller.UserController{}.GetUser)
+		user.GET("/getUsers", controller.UserController{}.GetUsers)
+		user.DELETE("/deleteUser/:id", controller.UserController{}.DeleteUserById)
 	}
 }

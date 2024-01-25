@@ -34,7 +34,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "首页"
+                    "用户管理"
                 ],
                 "summary": "创建用户",
                 "parameters": [
@@ -48,6 +48,87 @@ const docTemplate = `{
                         }
                     }
                 ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/common.LinResult"
+                        }
+                    }
+                }
+            }
+        },
+        "/user/deleteUser/{id}": {
+            "delete": {
+                "description": "删除用户",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "用户管理"
+                ],
+                "summary": "删除用户",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "删除用户",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/common.LinResult"
+                        }
+                    }
+                }
+            }
+        },
+        "/user/getUser/{id}": {
+            "get": {
+                "description": "查询用户",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "用户管理"
+                ],
+                "summary": "查询用户",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "查询用户",
+                        "name": "id",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "302": {
+                        "description": "Found",
+                        "schema": {
+                            "$ref": "#/definitions/common.LinResult"
+                        }
+                    }
+                }
+            }
+        },
+        "/user/getUsers": {
+            "get": {
+                "description": "查询所有用户",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "用户管理"
+                ],
+                "summary": "查询所有用户",
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -80,6 +161,40 @@ const docTemplate = `{
                     }
                 }
             }
+        },
+        "/user/updateUser": {
+            "put": {
+                "description": "更新用户",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "用户管理"
+                ],
+                "summary": "更新用户",
+                "parameters": [
+                    {
+                        "description": "更新用户",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.UserBase"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/common.LinResult"
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -95,6 +210,18 @@ const docTemplate = `{
                 }
             }
         },
+        "gorm.DeletedAt": {
+            "type": "object",
+            "properties": {
+                "time": {
+                    "type": "string"
+                },
+                "valid": {
+                    "description": "Valid is true if Time is not NULL",
+                    "type": "boolean"
+                }
+            }
+        },
         "models.UserBase": {
             "type": "object",
             "properties": {
@@ -104,6 +231,12 @@ const docTemplate = `{
                 "client_port": {
                     "type": "string"
                 },
+                "created_at": {
+                    "type": "string"
+                },
+                "deleted_at": {
+                    "$ref": "#/definitions/gorm.DeletedAt"
+                },
                 "device_info": {
                     "type": "string"
                 },
@@ -112,6 +245,9 @@ const docTemplate = `{
                     "example": "lin@qq.com"
                 },
                 "heartbeat_time": {
+                    "type": "integer"
+                },
+                "id": {
                     "type": "integer"
                 },
                 "identity": {
@@ -134,8 +270,10 @@ const docTemplate = `{
                     "type": "string",
                     "example": "18989190946"
                 },
+                "updated_at": {
+                    "type": "string"
+                },
                 "username": {
-                    "description": "gorm.Model",
                     "type": "string",
                     "example": "lin"
                 }
